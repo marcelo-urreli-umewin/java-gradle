@@ -30,6 +30,7 @@ public class SeleniumHelper {
         book1Xpath = "//*[@id=\"tile-container\"]/ul/li[1]/div/a[1]/img";
         book2Xpath = "//*[@id=\"tile-container\"]/ul/li[2]/div/a[1]/img";
         baseUrl = "https://www.walmart.com/browse/books/top-200-books/3920_1057224";
+        //REPLACE CHROME DRIVER PATH
         System.setProperty("webdriver.chrome.driver", "/Users/murreli/Downloads/chromedriver");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
