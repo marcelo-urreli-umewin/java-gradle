@@ -1,0 +1,34 @@
+apply plugin: 'java'
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+task runTest() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'challenge.cart', 'src/test/resources']
+        }
+    }
+}
+
+dependencies {
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.0'
+    compile group: 'org.hamcrest', name: 'java-hamcrest', version: '2.0.0.0'
+
+    testCompile 'info.cukes:cucumber-java:1.2.5'
+    testCompile 'info.cukes:cucumber-junit:1.2.5'
+    testCompile 'junit:junit:4.12'
+    testCompile 'info.cukes:cucumber-core:1.1.2'
+
+
+}
+
+repositories {
+    mavenCentral()
+}
